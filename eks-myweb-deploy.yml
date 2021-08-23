@@ -6,7 +6,7 @@ metadata:
   labels:
     app: myweb
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: myweb
@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: phpfpm
-        image: docker.io/ifew/docker-test-php:7.3
+        image: docker.io/ifew/docker-test-php:v1
         ports:
         - containerPort: 80
         env:
