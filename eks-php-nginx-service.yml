@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-php-web-service
+  namespace: test-php-web
+  labels:
+    app: test-web
+spec:
+  selector:
+    app: test-web
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: LoadBalancer

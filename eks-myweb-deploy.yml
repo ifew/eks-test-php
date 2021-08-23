@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myweb-deployment
+  namespace: ananda-dev
+  labels:
+    app: myweb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myweb
+  template:
+    metadata:
+      labels:
+        app: myweb
+    spec:
+      containers:
+      - name: phpfpm
+        image: docker.io/ifew/docker-test-php:7.3
+        ports:
+        - containerPort: 80
+        env:
+        - name: MYSQL_DB_HOST
+          value: db.host.com
+        - name: MYSQL_DATABASE
+          value: test
+        - name: MYSQL_USER
+          value: admin 
+        - name: MYSQL_PASSWORD
+          value: password1234
+        - name: MYSQL_ROOT_PASSWORD
+          value: password1234
+        - name: TEST
+          value: test
+      # - name: mysql
+      #   image: mysql:5.7.35
+      #   env:
+      #   - name: MYSQL_DATABASE
+      #     value: test
+      #   - name: MYSQL_USER
+      #     value: ifew
+      #   - name: MYSQL_PASSWORD
+      #     value: password1234 
+      #   - name: MYSQL_ROOT_PASSWORD
+      #     value: password1234root
