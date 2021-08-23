@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mydb-deployment
+  namespace: myweb
+  labels:
+    app: mydb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mydb
+  template:
+    metadata:
+      labels:
+        app: mydb
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:5.7.35
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_DATABASE
+          value: test
+        - name: MYSQL_USER
+          value: ifew
+        - name: MYSQL_PASSWORD
+          value: password1234 
+        - name: MYSQL_ROOT_PASSWORD
+          value: password1234root

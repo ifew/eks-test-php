@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: myweb-deployment
-  namespace: ananda-dev
+  namespace: myweb
   labels:
     app: myweb
 spec:
@@ -17,16 +17,16 @@ spec:
     spec:
       containers:
       - name: phpfpm
-        image: docker.io/ifew/docker-test-php:v1
+        image: docker.io/ifew/docker-test-php:v2
         ports:
         - containerPort: 80
         env:
         - name: MYSQL_DB_HOST
-          value: db.host.com
+          value: mydb.host.com
         - name: MYSQL_DATABASE
           value: test
         - name: MYSQL_USER
-          value: admin 
+          value: ifew 
         - name: MYSQL_PASSWORD
           value: password1234
         - name: MYSQL_ROOT_PASSWORD
