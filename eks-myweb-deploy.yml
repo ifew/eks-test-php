@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: phpfpm
-        image: docker.io/ifew/docker-test-php:v2
+        image: docker.io/ifew/docker-test-php:v3
         ports:
         - containerPort: 80
         env:
@@ -33,6 +33,16 @@ spec:
           value: password1234
         - name: TEST
           value: test
+        - name: SECRET_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: myweb-secret
+              key: secret_username
+        - name: SECRET_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: myweb-secret
+              key: secret_password
       # - name: mysql
       #   image: mysql:5.7.35
       #   env:
