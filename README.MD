@@ -110,8 +110,19 @@ kubectl -n test-php-web describe pod test-php-web-deployment-96ddcf945-wqfqg`
 ## cerate namespace
 `kubectl create namespace myweb`
 
-## Create secret
+## Create Secret
 `kubectl apply -f eks-myweb-secret.yml`
+
+## Check Secret
+`kubectl get secrets -n myweb`
+`kubectl describe secrets/myweb-secret -n myweb`
+
+## Get content in Secret
+get data in Secret
+`kubectl get secret myweb-secret -n myweb -o jsonpath='{.data}'`
+decoding data for readable
+`echo 'cGFzczEyMzQ=' | base64 --decode`
+
 
 ## Create deploy pod php and nginx
 `kubectl apply -f eks-myweb-deploy.yml`
